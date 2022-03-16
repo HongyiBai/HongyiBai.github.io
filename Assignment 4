@@ -1,0 +1,75 @@
+let song1, song2
+let playButton = false
+
+function preload() {
+  song1 = loadSound('./qinhuaci.mp3')
+  song2 = loadSound('./daoxiang.mp3')
+}
+
+function setup() {
+  
+  let cnv = createCanvas(100, 100);
+  cnv.mousePressed(canvasPressed);
+  
+  
+  
+  song1.setVolume(0.3)
+  song2.setVolume(0.3)
+}
+
+function draw() {
+  background(220);
+}
+
+function canvasPressed() {
+  if(!playButton){
+    song1.play()
+    song2.play()
+  } 
+  else {
+    song1.stop()
+    song2.stop()
+  }
+  playButton = !playButton
+  
+
+  
+  
+}
+
+
+function keyPressed(e) {
+  console.log('keyVal ', e.key)
+  switch(e.key) {
+    case 'q':
+      song1.rate(0.5)
+      break;
+    case 'w':
+      song1.rate(1)
+      break;
+    case 'e':
+      song1.rate(1.5)
+      break;
+    case 'r':
+      song1.rate(2)
+      break;
+    case 'a':
+      song2.rate(0.5)
+      break;
+    case 's':
+      song2.rate(1)
+      break;
+    case 'd':
+      song2.rate(1.5)
+      break;
+    case 'f':
+      song2.rate(2)
+      break;
+    case 'x':
+      song1.stop()
+      break;
+    case 'z':
+      song2.stop()
+      break;
+  }
+}

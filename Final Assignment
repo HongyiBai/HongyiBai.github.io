@@ -1,0 +1,63 @@
+// x1, y1 are the x and y coordinates of the first ball
+// vx1 is the speed of the x, vy1 is y direction of the speed of the first ball 
+// x2, y2 are the x and y coordinates of the second ball
+// vx2 is the speed of the x, vy2 is y direction of the speed of the second ball
+// r1 is the diameter of the first ball, r2 is the diameter of the second ball
+
+let x1, y1;
+let x2, y2;
+let vx1, vy1;
+let vx2, vy2;
+let r1, r2;
+
+function setup() {
+  createCanvas(600, 600);
+
+  // Give ramdom values for each base values
+  x1 = random(width);
+  y1 = random(height);
+  x2 = random(width);
+  y2 = random(height);
+
+  vx1 = random(2, 4);
+  vx2 = random(-2, -4);
+  vy1 = random(-2, -4);
+  vy2 = random(2, 4);
+
+  r1 = 20;
+  r2 = 30;
+}
+
+function draw() {
+  background(0);
+
+  // color of the first ball
+  fill(255, 0, 0);
+  // display of the first ball
+  ellipse(x1, y1, r1, r1);
+  // movment of the first ball
+  x1 += vx1;
+  y1 += vy1;
+  // Determine whether the first ball hits four sides. If it hits, the speed will be reversed which is the effect of rebound
+  if (x1 > width || x1 < 0) {
+    vx1 *= -1;
+  }
+  if (y1 > height || y1 < 0) {
+    vy1 *= -1;
+  }
+
+  // color of the second ball
+  fill(0, 0, 255);
+  // display of the second ball
+  ellipse(x2, y2, r2, r2);
+  // movment of the second ball
+  x2 += vx2;
+  y2 += vy2;
+  // Determine whether the second ball hits four sides. If it hits, the speed will be reversed which is the effect of rebound
+  if (x2 > width || x2 < 0) {
+    vx2 *= -1;
+  }
+  if (y2 > height || y2 < 0) {
+    vy2 *= -1;
+  }
+}

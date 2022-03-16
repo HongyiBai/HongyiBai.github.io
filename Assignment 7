@@ -1,0 +1,51 @@
+let font;
+let poemlines;
+
+function preload() {
+  font = loadFont('Redressed-Regular.ttf')
+  font2 = loadFont('Shizuru-Regular.ttf')
+  poemlines = loadStrings('bird.txt');
+}
+
+function setup()
+{
+  createCanvas(1000,1000,WEBGL)
+  noLoop()
+}
+function draw(){
+  
+  background(50)
+  if (mouseIsPressed === true)
+    {
+      textFont(font)
+    }
+  else
+  {
+     textFont(font2)
+  }
+  
+  fill(255)
+  textSize(width/20)
+  textAlign(CENTER,CENTER)
+  for (let j = 0; j < poemlines.length; j++) {
+    var doc = window.nlp(poemlines[j]);
+    var singular  = doc.match('#Singular').not('#Pronoun');
+    singular.forEach(d => {
+      d.replaceWith(getRandBird())
+    })
+    let time = millis();
+    textToPrint = singular.all().text()
+    rotateX(time/1000)
+    rotateY(time/500)
+    text(textToPrint, 0 , 0);
+  }
+  
+}
+var birdwords = ["beak", "bird", "bill", "fly", "egg", "tail", "flightless", "flock", "flight", "birdhouse", "feather", "flight feathers", "eagle", "wing", "chick", "canary", "aviary", "incubate", "sparrow"," nest", "nestling", "migration", "parrot", "migrate"," birdcage", "pigeon", "kiwi", "rook", "roost","rookery", "peacock", "raven", "blackbird", "magpie", "budgie", "budgerigar", "ibis","parakeet", "owl","martin","meadowlark","merganser","migration","moa","mockingbird","nandu","nene","nest","nestling","nighthawk","nightingale","nightjar"];
+
+function getRandBird() {
+  return birdwords[Math.floor(Math.random() * birdwords.length)];
+}
+
+  
+

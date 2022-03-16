@@ -1,0 +1,29 @@
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
+  background(0);
+  translate(680,149);
+  noStroke();
+  for( let i = 0; i < 10; i++)
+  {
+    fill(255,45,45);
+    ellipse(40,30,20,80);
+    fill('yellow');
+    rect(50,30,20,80);
+    fill(255,142,30);
+    ellipse(90,30,20,80);
+    rotate(PI/5);
+  }
+  
+  translate(0,200);
+  translate(0,200);
+  translate(0,200);
+  translate(0,200);
+  fill(139,71,2);
+  triangle(0,-700,400,60,-400,60);
+  triangle(200,-600,500,60,-400,60);
+  triangle(-200,-400,400,60,-550,60);
+  
+}

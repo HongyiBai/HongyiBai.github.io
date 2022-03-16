@@ -1,0 +1,35 @@
+function preload() {
+  beluga = loadImage('cat.jpg');
+}
+
+function setup() {
+   createCanvas(windowWidth, windowHeight, WEBGL)
+}
+
+function draw() {
+
+  background(250)
+  directionalLight(225,100, 100, 1)
+  normalMaterial()
+  texture(beluga)
+  for (let x = 0; x < 50; x++) {
+    push();
+    for (let i = 0; i < 10; i++) {
+      translate(
+        sin(frameCount * 0.01 - x) * 100,
+        sin(frameCount * 0.01 - x) * 100,
+        i * 0.1
+      );
+      rotateX(frameCount * 0.01)
+      rotateZ(frameCount * 0.01)
+      rotateY(frameCount * 0.01)
+      push()
+      box(20)
+      pop()
+    }
+    pop();
+  rotateX(map(mouseX, 0, width/2, 0, TWO_PI))
+  rotateY(map(mouseY, 0, height/2, 0, TWO_PI))
+
+}
+}

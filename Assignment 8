@@ -1,0 +1,66 @@
+let Image;
+let classifi;
+let flagA = false;
+let flagB = false;
+let initializ = false;
+ 
+function ImageIsReady() {
+    image(Image, 0, 0, width, height);
+    flagA = true;
+    if (initializ == true){
+        classifi.predict(Image, GetResult);
+    }
+}
+ 
+function ModelIsReady() {
+    
+    
+    flagB = true;
+
+}
+ 
+ function File(file) {
+    print(file);
+    if (file.type === 'image') {
+      Image = createImg(file.data, ImageIsReady);
+      Image.hide();
+    } else {
+      Image = null;
+    }
+  }
+  
+ 
+function GetResult(error, results){
+    if(error){
+        console.error(error);
+    }else{
+        console.log(results);
+        let name = results[0].className;
+        fill(0);
+        textSize(25);
+        text(name, 100, height-20);
+
+        
+    }   
+}
+ 
+function gotFile(file){
+    Image = createImg(file.data, ImageIsReady).hide();
+}
+ 
+function setup() {
+    let c = createCanvas(500, 500);
+    background(200);
+
+
+    input = createFileInput(File);
+    classifi = ml5.imageClassifier('MobileNet', ModelIsReady); 
+}
+ 
+function draw(){
+    if(flagA == true && flagB == true){
+        classifi.predict(Image, GetResult);
+        initializ = true;
+        noLoop();
+    }
+}

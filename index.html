@@ -2,6 +2,28 @@
 <html>
 <body>
 <h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+function setup() {
+  createCanvas(1000, 1000);
+  background(100)
+}
+
+function draw() {
+  background(100,1);
+  noStroke()
+  if(mouseIsPressed)
+  { 
+    fill(mouseX,mouseY,0)
+    
+    ellipse(mouseX,mouseY,80,80)}
+  else{
+   fill(mouseX,0,mouseY)
+   
+   rect(mouseX-40,mouseY-40,80,80)
+  }
+  
+  
+  
+}
 </body>
 </html>
